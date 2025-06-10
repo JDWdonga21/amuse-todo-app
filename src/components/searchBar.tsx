@@ -11,6 +11,13 @@ const SearchBar = () => {
       placeholder="검색..."
       value={filter}
       onChange={(e) => setFilter(e.target.value)}
+      style={{
+        flex: 1,
+        padding: '10px',
+        borderRadius: '8px',
+        border: '1px solid #ccc',
+        fontSize: '14px',
+      }}
     />
   );
 };
