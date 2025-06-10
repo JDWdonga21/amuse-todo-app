@@ -7,14 +7,18 @@ import reportWebVitals from './reportWebVitals';
 // 라우팅을 위한 컴포넌트 import
 import { BrowserRouter } from 'react-router-dom';
 
+import { RecoilRoot } from 'recoil';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </RecoilRoot>    
   </React.StrictMode>
 );
 
