@@ -110,19 +110,24 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
           </td>
           
           <td style={{ 
-            width: '70px', // 너비 줄임
+            width: '90px', // 너비 더 증가
             padding: '12px 8px',
             textAlign: 'center',
             verticalAlign: 'middle' 
           }}>
             <span style={{
-              fontSize: '10px', // 폰트 크기 줄임
-              padding: '2px 6px', // 패딩 줄임
+              fontSize: '13px', // 폰트 크기 더 증가
+              padding: '8px 12px', // 패딩 더 증가
               backgroundColor: getPriorityColor(item.priority),
               color: 'white',
-              borderRadius: '3px',
+              borderRadius: '6px', // 테두리 반경 더 증가
               display: 'inline-block',
-              lineHeight: '1.2', // 줄높이 조정
+              lineHeight: '1.2',
+              minWidth: '60px', // 최소 너비 더 증가
+              height: '28px', // 높이 더 증가 (버튼과 비슷)
+              boxSizing: 'border-box',
+              textAlign: 'center',
+              fontWeight: '600', // 폰트 굵기 추가
             }}>
               {item.priority}
             </span>
@@ -134,68 +139,73 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
             textAlign: 'right',
             verticalAlign: 'middle' 
           }}>
-            {isEditing ? (
+            <div style={{
+              display: 'flex',
+              gap: '3px',
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+            }}>
+              {isEditing ? (
+                <button 
+                  onClick={updateTodo}
+                  style={{
+                    padding: '6px 8px', // 패딩 증가
+                    fontSize: '12px', // 폰트 크기 증가
+                    backgroundColor: '#10b981',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '32px', // 너비 증가
+                    height: '32px', // 높이 증가
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  ✓
+                </button>
+              ) : (
+                <button 
+                  onClick={() => setIsEditing(true)}
+                  style={{
+                    padding: '6px 8px',
+                    fontSize: '12px',
+                    backgroundColor: '#3b82f6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  ✏️
+                </button>
+              )}
               <button 
-                onClick={updateTodo}
+                onClick={deleteTodo}
                 style={{
-                  padding: '3px 6px', // 패딩 더 줄임
-                  fontSize: '10px',
-                  backgroundColor: '#10b981',
+                  padding: '6px 8px',
+                  fontSize: '12px',
+                  backgroundColor: '#ef4444',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '3px',
+                  borderRadius: '4px',
                   cursor: 'pointer',
-                  marginRight: '3px',
-                  width: '26px', // 고정 너비
-                  height: '26px', // 고정 높이
-                  display: 'inline-flex',
+                  width: '32px',
+                  height: '32px',
+                  display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                ✓
+                🗑️
               </button>
-            ) : (
-              <button 
-                onClick={() => setIsEditing(true)}
-                style={{
-                  padding: '3px 6px',
-                  fontSize: '10px',
-                  backgroundColor: '#3b82f6',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '3px',
-                  cursor: 'pointer',
-                  marginRight: '3px',
-                  width: '26px',
-                  height: '26px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                ✏️
-              </button>
-            )}
-            <button 
-              onClick={deleteTodo}
-              style={{
-                padding: '3px 6px',
-                fontSize: '10px',
-                backgroundColor: '#ef4444',
-                color: 'white',
-                border: 'none',
-                borderRadius: '3px',
-                cursor: 'pointer',
-                width: '26px',
-                height: '26px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              🗑️
-            </button>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -50,19 +50,22 @@ const TodoPage = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   wrapper: {
-    minHeight: '100vh',
+    minHeight: '100%',
     display: 'flex',
+    height: '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
     backgroundColor: '#f8fafc',
-    padding: '20px 16px',
+    overflow: 'hidden',
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    height: '100%',
     maxWidth: '700px',
-    minHeight: '85vh',
+    minHeight: '95vh',
     backgroundColor: '#ffffff',
     borderRadius: '16px',
     boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
@@ -75,6 +78,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#fafbfc',
     borderRadius: '16px 16px 0 0',
     height: '40px',
+    width: '100%',
   },
   title: {
     fontSize: '28px',
@@ -89,18 +93,22 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderBottom: '1px solid #f1f5f9',
     backgroundColor: '#fefefe',
     height: '15vh',
+    width: '100%',
   },
   controls: {
     display: 'flex',
     gap: '12px',
-    marginBottom: '16px',
+    marginBottom: '20px',
     flexWrap: 'wrap',
     alignItems: 'center',
     height: '40px',
+    width: '100%',
   },
   addArea: {
     display: 'flex',
     height: '50px',
+    width: '100%',
+    marginTop: '10px'
   },
   listSection: {
     flex: 1,
@@ -108,6 +116,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     minHeight: '0', // 중요: flex item이 제대로 줄어들 수 있도록
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
+    // overflowY: 'scroll',
   },
 };
 
