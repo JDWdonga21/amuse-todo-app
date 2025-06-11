@@ -91,7 +91,7 @@ const styles: { [key: string]: CSSProperties } = {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",   
-    background: "linear-gradient(to right, #e3f2fd, #ffffff)", // 밝고 부드러운 배경
+    background: "linear-gradient(to right, #e3f2fd, #ffffff)",
   },
 //   left: {
 //     width: leftSideWidth,
@@ -112,7 +112,7 @@ const styles: { [key: string]: CSSProperties } = {
 //     flexDirection: "column",
 //     justifyContent: "center",
 //     alignItems: "center",
-//     background: "linear-gradient(to right, #e3f2fd, #ffffff)", // 밝고 부드러운 배경
+//     background: "linear-gradient(to right, #e3f2fd, #ffffff)",
 //   },
   title: {
     fontSize: "32px",

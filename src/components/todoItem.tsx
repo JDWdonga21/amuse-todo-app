@@ -53,13 +53,13 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
       marginBottom: '8px',
       borderCollapse: 'separate',
       borderSpacing: 0,
-      height: 'auto', // 고정 높이 제거
+      height: 'auto',
     }}>
       <tbody>
-        <tr style={{ height: '50px' }}> {/* 행 높이 고정 */}
+        <tr style={{ height: '50px' }}>
           <td style={{ 
             width: '40px', 
-            padding: '12px 8px', // 패딩 줄임
+            padding: '12px 8px',
             textAlign: 'center',
             verticalAlign: 'middle' 
           }}>
@@ -68,7 +68,7 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
               checked={item.completed}
               onChange={toggleComplete}
               style={{ 
-                width: '16px', // 크기 줄임
+                width: '16px',
                 height: '16px',
                 cursor: 'pointer'
               }}
@@ -76,9 +76,9 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
           </td>
           
           <td style={{ 
-            padding: '12px 8px', // 패딩 줄임
+            padding: '12px 8px',
             verticalAlign: 'middle',
-            fontSize: '14px', // 폰트 크기 줄임
+            fontSize: '14px',
             textDecoration: item.completed ? 'line-through' : 'none',
             color: item.completed ? '#999' : '#333',
           }}>
@@ -97,7 +97,7 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
                 }}
                 style={{
                   width: '100%',
-                  padding: '6px 8px', // 패딩 줄임
+                  padding: '6px 8px',
                   fontSize: '14px',
                   border: '1px solid #ccc',
                   borderRadius: '4px',
@@ -111,31 +111,31 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
           </td>
           
           <td style={{ 
-            width: '90px', // 너비 더 증가
+            width: '90px',
             padding: '12px 8px',
             textAlign: 'center',
             verticalAlign: 'middle' 
           }}>
             <span style={{
-              fontSize: '13px', // 폰트 크기 더 증가
-              padding: '8px 12px', // 패딩 더 증가
+              fontSize: '13px',
+              padding: '8px 12px',
               backgroundColor: getPriorityColor(item.priority),
               color: 'white',
-              borderRadius: '6px', // 테두리 반경 더 증가
+              borderRadius: '6px',
               display: 'inline-block',
               lineHeight: '1.2',
-              minWidth: '60px', // 최소 너비 더 증가
-              height: '28px', // 높이 더 증가 (버튼과 비슷)
+              minWidth: '60px',
+              height: '28px',
               boxSizing: 'border-box',
               textAlign: 'center',
-              fontWeight: '600', // 폰트 굵기 추가
+              fontWeight: '600',
             }}>
               {item.priority}
             </span>
           </td>
           
           <td style={{ 
-            width: '80px', // 너비 줄임
+            width: '80px',
             padding: '12px 8px',
             textAlign: 'right',
             verticalAlign: 'middle' 
@@ -150,15 +150,15 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
                 <button 
                   onClick={updateTodo}
                   style={{
-                    padding: '6px 8px', // 패딩 증가
-                    fontSize: '12px', // 폰트 크기 증가
+                    padding: '6px 8px',
+                    fontSize: '12px',
                     backgroundColor: '#10b981',
                     color: 'white',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: 'pointer',
-                    width: '32px', // 너비 증가
-                    height: '32px', // 높이 증가
+                    width: '32px',
+                    height: '32px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

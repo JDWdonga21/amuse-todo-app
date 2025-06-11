@@ -11,7 +11,7 @@ export function useLocalStorage<T>(key: string, atomState: any): boolean {
       try {
         setState(JSON.parse(saved));
       } catch (e) {
-        console.error('❌ Failed to parse localStorage:', e);
+        console.error('저장 실패', e);
       }
     }
     setIsReady(true);

@@ -36,13 +36,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     maxWidth: '600px',
   },
   list: {
-    display: 'block', // flex 대신 block 사용
+    display: 'block',
     gap: '12px',
     flex: 1,
     overflowY: 'auto',
-    padding: '0 4px 0 0', // 오른쪽만 스크롤바 여백
-    width: '100%', // 전체 너비 사용
-    // 커스텀 스크롤바 스타일링
+    padding: '0 4px 0 0',
+    width: '100%',
     scrollbarWidth: 'thin',
     scrollbarColor: '#cbd5e1 transparent',
   },

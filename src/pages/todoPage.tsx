@@ -31,7 +31,6 @@ const TodoPage = () => {
 
   return (
     <div style={styles.wrapper}>
-      {/* CSS Reset for text direction */}
       <div style={styles.container}>
         <div style={styles.header}>
           <h1 style={styles.title}>📋 TODO 리스트</h1>
@@ -124,7 +123,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   listSection: {
     flex: 1,
     padding: '26px 24px 24px 24px',
-    minHeight: '0', // 중요: flex item이 제대로 줄어들 수 있도록
+    minHeight: '0',
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
