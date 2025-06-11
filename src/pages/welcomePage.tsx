@@ -33,10 +33,11 @@ const WelcomePage = () => {
       borderTopRightRadius: borderRadius,
       borderBottomRightRadius: borderRadius,
       transition: "all 2s ease",
+      fontSize: '300px'
     };
     const rightStyle: CSSProperties = {
         width: rightSideWidth,
-        height: "100%",
+        height: "90%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -50,35 +51,34 @@ const WelcomePage = () => {
     return (
         <div style={styles.container}>
             <div style={leftStyle}>
-                ToDoList 그림
+                📋
             </div>
             <div style={rightStyle}>
-                <div style={{marginTop: "40px", marginBottom: "60px", height: "calc(100%-100px)", display: leftSideWidth === "50%" ? "flex" : "none", flexDirection: "column", alignItems: 'center'}}>
-                    <h1 style={styles.title}>✨ 아뮤즈 할 일 목록</h1>
-                    <p style={styles.description}>
-                        나만의 할 일 리스트를 쉽게 추가하고, 관리해보세요.
-                    </p>
-                    {/* <button onClick={()=>{
-                        setLeftSideWidth("100%");
-                        setRightSideWidth("0%");
-                        setIsButtonClicked(true);
-                    }} style={styles.button}>
-                        시작하기
-                    </button> */}
-                    <Tbutton
-                      text="시작하기기"
-                      onButtonClick={
-                        ()=>{
-                          setLeftSideWidth("100%");
-                          setRightSideWidth("0%");
-                          setIsButtonClicked(true);
-                        }
-                      }
-                    >
-
-                    </Tbutton>
-                </div>                
-            </div>
+              <div style={{marginTop: "40px", marginBottom: "60px", height: "calc(100%-100px)", display: leftSideWidth === "50%" ? "flex" : "none", flexDirection: "column", alignItems: 'center'}}>
+                <h1 style={styles.title}>✨ 아뮤즈 할 일 목록</h1>
+                <p style={styles.description}>
+                  나만의 할 일 리스트를 쉽게 추가하고, 관리해보세요.
+                </p>
+                {/* <button onClick={()=>{
+                      setLeftSideWidth("100%");
+                      setRightSideWidth("0%");
+                      setIsButtonClicked(true);
+                  }} style={styles.button}>
+                      시작하기
+                </button> */}
+                <Tbutton
+                  text="시작하기기"
+                  onButtonClick={
+                  ()=>{
+                    setLeftSideWidth("100%");
+                    setRightSideWidth("0%");
+                    setIsButtonClicked(true);
+                  }
+                  }
+                >
+                </Tbutton>
+              </div>                
+          </div>
         
         </div>
     );
@@ -122,7 +122,7 @@ const styles: { [key: string]: CSSProperties } = {
     color: "#0d47a1",
   },
   description: {
-    fontSize: "16px",
+    fontSize: "18px",
     marginBottom: "24px",
     color: "#555",
     textAlign: "center",

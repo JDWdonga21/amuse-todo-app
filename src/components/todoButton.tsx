@@ -11,11 +11,13 @@ const Tbutton: React.FC<TbuttonProps> = ({ text, onButtonClick, type = 'edit' })
   const baseStyle: React.CSSProperties = {
     padding: '8px 14px',
     borderRadius: '8px',
-    fontSize: '14px',
+    fontSize: '24px',
     marginLeft: '6px',
     border: 'none',
     cursor: 'pointer',
     fontWeight: 'bold',
+    width: '400px',
+    height: '50px'
   };
 
   const typeStyles: { [key: string]: React.CSSProperties } = {
