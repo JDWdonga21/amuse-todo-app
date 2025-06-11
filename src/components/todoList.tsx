@@ -33,6 +33,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     minHeight: '0',
     height: '100%',
     width: '100%',
+    maxWidth: '600px',
   },
   list: {
     display: 'block', // flex 대신 block 사용

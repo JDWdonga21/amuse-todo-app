@@ -64,13 +64,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    maxWidth: '700px',
+    maxWidth: '650px',
     minHeight: '95vh',
     backgroundColor: '#ffffff',
     borderRadius: '16px',
     boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
     border: '1px solid #e2e8f0',
-    overflow: 'scroll',
+    // overflow: 'scroll',
   },
   header: {
     padding: '24px 24px 16px 24px',
@@ -79,6 +79,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: '16px 16px 0 0',
     height: '40px',
     width: '100%',
+    maxWidth: '600px',
   },
   title: {
     fontSize: '28px',
@@ -94,6 +95,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#fefefe',
     height: '15vh',
     width: '100%',
+    maxWidth: '600px',
   },
   controls: {
     display: 'flex',
@@ -103,11 +105,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: 'center',
     height: '40px',
     width: '100%',
+    maxWidth: '600px',
   },
   addArea: {
     display: 'flex',
     height: '50px',
     width: '100%',
+    maxWidth: '600px',
     marginTop: '10px'
   },
   listSection: {
@@ -117,6 +121,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
+    maxWidth: '600px',
     // overflowY: 'scroll',
   },
 };

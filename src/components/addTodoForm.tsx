@@ -85,7 +85,8 @@ const AddTodoForm = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    maxWidth: '600px',
   },
   form: {
     display: 'flex',

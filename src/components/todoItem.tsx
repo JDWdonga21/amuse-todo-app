@@ -45,6 +45,7 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
   return (
     <table style={{ 
       width: '100%', 
+      maxWidth: '600px',
       backgroundColor: '#ffffff',
       border: '1px solid #e2e8f0',
       borderLeft: `4px solid ${getPriorityColor(item.priority)}`,

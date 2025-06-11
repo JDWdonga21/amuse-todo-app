@@ -15,6 +15,7 @@ const PriorityFilter = () => {
         borderRadius: '8px',
         fontSize: '14px',
         border: '1px solid #ccc',
+        maxWidth: '300px',
       }}
     >
       <option value="all">전체</option>

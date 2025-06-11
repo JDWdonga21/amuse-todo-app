@@ -17,6 +17,7 @@ const SearchBar = () => {
         borderRadius: '8px',
         border: '1px solid #ccc',
         fontSize: '14px',
+        maxWidth: '300px',
       }}
     />
   );
