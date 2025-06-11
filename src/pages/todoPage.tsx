@@ -4,23 +4,30 @@ import AddTodoForm from '../components/addTodoForm';
 import SearchBar from '../components/searchBar';
 import PriorityFilter from '../components/priorityFilter';
 import TodoList from '../components/todoList';
-import { todoListState } from '../atoms/todoListAtom';
+
+import { todoListState, TodoItemType } from '../atoms/todoListAtom';
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
+
 
 const TodoPage = () => {
   const [todoList, setTodoList] = useRecoilState(todoListState);
 
-  // Load from localStorage on mount
-  useEffect(() => {
-    const saved = localStorage.getItem('todoList');
-    if (saved) {
-      setTodoList(JSON.parse(saved));
-    }
-  }, [setTodoList]);
+  // // Load from localStorage on mount
+  // useEffect(() => {
+  //   const saved = localStorage.getItem('todoList');
+  //   if (saved) {
+  //     setTodoList(JSON.parse(saved));
+  //   }
+  // }, [setTodoList]);
 
-  // Save to localStorage on change
-  useEffect(() => {
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-  }, [todoList]);
+  // // Save to localStorage on change
+  // useEffect(() => {
+  //   localStorage.setItem('todoList', JSON.stringify(todoList));
+  // }, [todoList]);
+
+  useLocalStorage<TodoItemType[]>('todoList', todoListState);
+
 
   return (
     <div style={styles.wrapper}>
