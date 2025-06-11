@@ -23,45 +23,91 @@ const TodoPage = () => {
   }, [todoList]);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>📋 TODO 리스트</h1>
-      <div style={styles.controls}>
-        <SearchBar />
-        <PriorityFilter />
+    <div style={styles.wrapper}>
+      {/* CSS Reset for text direction */}
+      <div style={styles.container}>
+        <div style={styles.header}>
+          <h1 style={styles.title}>📋 TODO 리스트</h1>
+        </div>
+        
+        <div style={styles.controlsSection}>
+          <div style={styles.controls}>
+            <SearchBar />
+            <PriorityFilter />
+          </div>
+          <div style={styles.addArea}>
+            <AddTodoForm />
+          </div>
+        </div>
+        
+        <div style={styles.listSection}>
+          <TodoList />
+        </div>
       </div>
-      <div style={{height: '60px'}}>
-        <AddTodoForm />
-      </div>
-      <div style={{height: 'calc(100% - 140px)'}}>
-        <TodoList />
-      </div>      
     </div>
   );
 };
 
 const styles: { [key: string]: React.CSSProperties } = {
+  wrapper: {
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    backgroundColor: '#f8fafc',
+    padding: '20px 16px',
+  },
   container: {
-    width: '600px',
-    height: '100%',
-    margin: '0 auto',
-    padding: '20px',
-    backgroundColor: '#fefefe',
-    borderRadius: '10px',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-    marginTop: '40px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    maxWidth: '700px',
+    minHeight: '85vh',
+    backgroundColor: '#ffffff',
+    borderRadius: '16px',
+    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)',
+    border: '1px solid #e2e8f0',
+    overflow: 'scroll',
   },
   header: {
+    padding: '24px 24px 16px 24px',
+    borderBottom: '1px solid #e2e8f0',
+    backgroundColor: '#fafbfc',
+    borderRadius: '16px 16px 0 0',
     height: '40px',
+  },
+  title: {
+    fontSize: '28px',
+    fontWeight: '700',
+    color: '#1e293b',
     textAlign: 'center',
-    marginBottom: '20px',
-    color: '#1976d2',
+    margin: 0,
+    letterSpacing: '-0.025em',
+  },
+  controlsSection: {
+    padding: '20px 24px',
+    borderBottom: '1px solid #f1f5f9',
+    backgroundColor: '#fefefe',
+    height: '15vh',
   },
   controls: {
-    height: '40px',
     display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '20px',
-    gap: '10px',
+    gap: '12px',
+    marginBottom: '16px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    height: '40px',
+  },
+  addArea: {
+    display: 'flex',
+    height: '50px',
+  },
+  listSection: {
+    flex: 1,
+    padding: '26px 24px 24px 24px',
+    minHeight: '0', // 중요: flex item이 제대로 줄어들 수 있도록
+    display: 'flex',
+    flexDirection: 'column',
   },
 };
 
