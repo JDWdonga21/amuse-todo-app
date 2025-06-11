@@ -5,24 +5,41 @@ import { todoListState, TodoItemType } from '../atoms/todoListAtom';
 const TodoItem = ({ item }: { item: TodoItemType }) => {
   const setTodoList = useSetRecoilState(todoListState);
   const [isEditing, setIsEditing] = useState(false);
+  const [isPriorityEditing, setIsPriorityEditing] = useState(false);
   const [newText, setNewText] = useState(item.text);
 
   const updateTodo = () => {
-    if (!newText.trim()) {
+    const trimmedText = newText.trim();
+    
+    // 빈 텍스트인 경우 원래 텍스트로 되돌리고 편집 모드 종료
+    if (!trimmedText) {
       setNewText(item.text);
       setIsEditing(false);
       return;
     }
+    
+    // Todo 업데이트
     setTodoList((oldList) =>
       oldList.map((todo) =>
-        todo.id === item.id ? { ...todo, text: newText.trim() } : todo
+        todo.id === item.id ? { ...todo, text: trimmedText } : todo
       )
     );
+    
+    // 편집 모드 종료
     setIsEditing(false);
   };
 
   const deleteTodo = () => {
     setTodoList((oldList) => oldList.filter((todo) => todo.id !== item.id));
+  };
+
+  const updatePriority = (newPriority: 'high' | 'medium' | 'low') => {
+    setTodoList((oldList) =>
+      oldList.map((todo) =>
+        todo.id === item.id ? { ...todo, priority: newPriority } : todo
+      )
+    );
+    setIsPriorityEditing(false);
   };
 
   const toggleComplete = () => {
@@ -65,9 +82,17 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
                 type="text"
                 value={newText}
                 onChange={(e) => setNewText(e.target.value)}
-                onBlur={updateTodo}
+                onBlur={(e) => {
+                  // 저장 버튼 클릭이 아닌 경우에만 blur 처리
+                  if (!e.relatedTarget || !e.relatedTarget.closest('button')) {
+                    updateTodo();
+                  }
+                }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') updateTodo();
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    updateTodo();
+                  }
                   if (e.key === 'Escape') {
                     setNewText(item.text);
                     setIsEditing(false);
@@ -82,18 +107,45 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
           </td>
 
           <td style={styles.priority}>
-            <span style={{
-              ...styles.priorityTag,
-              backgroundColor: getPriorityColor(item.priority)
-            }}>
-              {item.priority === 'high' ? '높음' : item.priority === 'medium' ? '중간' : '낮음'}
-            </span>
+            {isPriorityEditing ? (
+              <select
+                value={item.priority}
+                onChange={(e) => updatePriority(e.target.value as 'high' | 'medium' | 'low')}
+                onBlur={() => setIsPriorityEditing(false)}
+                style={styles.prioritySelect}
+                autoFocus
+              >
+                <option value="high">높음</option>
+                <option value="medium">중간</option>
+                <option value="low">낮음</option>
+              </select>
+            ) : (
+              <span 
+                style={{
+                  ...styles.priorityTag,
+                  backgroundColor: getPriorityColor(item.priority),
+                  cursor: 'pointer'
+                }}
+                onClick={() => setIsPriorityEditing(true)}
+              >
+                {item.priority === 'high' ? '높음' : item.priority === 'medium' ? '중간' : '낮음'}
+              </span>
+            )}
           </td>
 
           <td style={styles.actions}>
             <div style={styles.actionGroup}>
               {isEditing ? (
-                <button style={styles.saveButton} onClick={updateTodo}>✓</button>
+                <button 
+                  style={styles.saveButton} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateTodo();
+                  }}
+                >
+                  ✓
+                </button>
               ) : (
                 <button style={styles.editButton} onClick={() => setIsEditing(true)}>✏️</button>
               )}
@@ -160,6 +212,22 @@ const styles: { [key: string]: React.CSSProperties } = {
     lineHeight: '1.2',
     minWidth: '60px',
     height: '28px',
+    boxSizing: 'border-box',
+    textAlign: 'center',
+    fontWeight: 600,
+    cursor: 'pointer',
+    transition: 'opacity 0.2s ease',
+  },
+  prioritySelect: {
+    fontSize: '13px',
+    padding: '6px 8px',
+    border: '1px solid #ccc',
+    borderRadius: '6px',
+    backgroundColor: 'white',
+    color: '#333',
+    cursor: 'pointer',
+    minWidth: '60px',
+    height: '32px',
     boxSizing: 'border-box',
     textAlign: 'center',
     fontWeight: 600,
