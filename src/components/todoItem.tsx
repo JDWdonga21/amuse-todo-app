@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState, TodoItemType } from '../atoms/todoListAtom';
 
-import { motion } from 'framer-motion';
-
 const TodoItem = ({ item }: { item: TodoItemType }) => {
   const setTodoList = useSetRecoilState(todoListState);
   const [isEditing, setIsEditing] = useState(false);
@@ -45,44 +43,22 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
   };
 
   return (
-    <table style={{ 
-      width: '100%', 
-      maxWidth: '600px',
-      backgroundColor: '#ffffff',
-      border: '1px solid #e2e8f0',
-      borderLeft: `4px solid ${getPriorityColor(item.priority)}`,
-      borderRadius: '8px',
-      marginBottom: '8px',
-      borderCollapse: 'separate',
-      borderSpacing: 0,
-      height: 'auto',
-    }}>
+    <table style={{ ...styles.table, borderLeft: `4px solid ${getPriorityColor(item.priority)}` }}>
       <tbody>
-        <tr style={{ height: '50px' }}>
-          <td style={{ 
-            width: '40px', 
-            padding: '12px 8px',
-            textAlign: 'center',
-            verticalAlign: 'middle' 
-          }}>
+        <tr style={styles.tRow}>
+          <td style={styles.checkbox}>
             <input
               type="checkbox"
               checked={item.completed}
               onChange={toggleComplete}
-              style={{ 
-                width: '16px',
-                height: '16px',
-                cursor: 'pointer'
-              }}
+              style={styles.checkboxInput}
             />
           </td>
-          
-          <td style={{ 
-            padding: '12px 8px',
-            verticalAlign: 'middle',
-            fontSize: '14px',
+
+          <td style={{
+            ...styles.text,
             textDecoration: item.completed ? 'line-through' : 'none',
-            color: item.completed ? '#999' : '#333',
+            color: item.completed ? '#999' : '#333'
           }}>
             {isEditing ? (
               <input
@@ -97,123 +73,151 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
                     setIsEditing(false);
                   }
                 }}
-                style={{
-                  width: '100%',
-                  padding: '6px 8px',
-                  fontSize: '14px',
-                  border: '1px solid #ccc',
-                  borderRadius: '4px',
-                  boxSizing: 'border-box',
-                }}
+                style={styles.editInput}
                 autoFocus
               />
             ) : (
               <span>{item.text}</span>
             )}
           </td>
-          
-          <td style={{ 
-            width: '90px',
-            padding: '12px 8px',
-            textAlign: 'center',
-            verticalAlign: 'middle' 
-          }}>
+
+          <td style={styles.priority}>
             <span style={{
-              fontSize: '13px',
-              padding: '8px 12px',
-              backgroundColor: getPriorityColor(item.priority),
-              color: 'white',
-              borderRadius: '6px',
-              display: 'inline-block',
-              lineHeight: '1.2',
-              minWidth: '60px',
-              height: '28px',
-              boxSizing: 'border-box',
-              textAlign: 'center',
-              fontWeight: '600',
+              ...styles.priorityTag,
+              backgroundColor: getPriorityColor(item.priority)
             }}>
-              {(item.priority === 'high' ? "높음" : (item.priority === 'medium' ? "중간" : "낮음") )}
+              {item.priority === 'high' ? '높음' : item.priority === 'medium' ? '중간' : '낮음'}
             </span>
           </td>
-          
-          <td style={{ 
-            width: '80px',
-            padding: '12px 8px',
-            textAlign: 'right',
-            verticalAlign: 'middle' 
-          }}>
-            <div style={{
-              display: 'flex',
-              gap: '3px',
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-            }}>
+
+          <td style={styles.actions}>
+            <div style={styles.actionGroup}>
               {isEditing ? (
-                <button 
-                  onClick={updateTodo}
-                  style={{
-                    padding: '6px 8px',
-                    fontSize: '12px',
-                    backgroundColor: '#10b981',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  ✓
-                </button>
+                <button style={styles.saveButton} onClick={updateTodo}>✓</button>
               ) : (
-                <button 
-                  onClick={() => setIsEditing(true)}
-                  style={{
-                    padding: '6px 8px',
-                    fontSize: '12px',
-                    backgroundColor: '#3b82f6',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    width: '32px',
-                    height: '32px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  ✏️
-                </button>
+                <button style={styles.editButton} onClick={() => setIsEditing(true)}>✏️</button>
               )}
-              <button 
-                onClick={deleteTodo}
-                style={{
-                  padding: '6px 8px',
-                  fontSize: '12px',
-                  backgroundColor: '#ef4444',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  width: '32px',
-                  height: '32px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                🗑️
-              </button>
+              <button style={styles.deleteButton} onClick={deleteTodo}>🗑️</button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
   );
+};
+
+const styles: { [key: string]: React.CSSProperties } = {
+  table: {
+    width: '100%',
+    maxWidth: '600px',
+    backgroundColor: '#ffffff',
+    border: '1px solid #e2e8f0',
+    borderRadius: '8px',
+    marginBottom: '8px',
+    borderCollapse: 'separate',
+    borderSpacing: 0,
+    height: 'auto',
+  },
+  tRow: {
+    height: '50px',
+  },
+  checkbox: {
+    width: '40px',
+    padding: '12px 8px',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+  },
+  checkboxInput: {
+    width: '16px',
+    height: '16px',
+    cursor: 'pointer',
+  },
+  text: {
+    padding: '12px 8px',
+    verticalAlign: 'middle',
+    fontSize: '14px',
+  },
+  editInput: {
+    width: '100%',
+    padding: '6px 8px',
+    fontSize: '14px',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    boxSizing: 'border-box',
+  },
+  priority: {
+    width: '90px',
+    padding: '12px 8px',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+  },
+  priorityTag: {
+    fontSize: '13px',
+    padding: '8px 12px',
+    color: 'white',
+    borderRadius: '6px',
+    display: 'inline-block',
+    lineHeight: '1.2',
+    minWidth: '60px',
+    height: '28px',
+    boxSizing: 'border-box',
+    textAlign: 'center',
+    fontWeight: 600,
+  },
+  actions: {
+    width: '80px',
+    padding: '12px 8px',
+    textAlign: 'right',
+    verticalAlign: 'middle',
+  },
+  actionGroup: {
+    display: 'flex',
+    gap: '3px',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  editButton: {
+    padding: '6px 8px',
+    fontSize: '12px',
+    backgroundColor: '#3b82f6',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    width: '32px',
+    height: '32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  saveButton: {
+    padding: '6px 8px',
+    fontSize: '12px',
+    backgroundColor: '#10b981',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    width: '32px',
+    height: '32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  deleteButton: {
+    padding: '6px 8px',
+    fontSize: '12px',
+    backgroundColor: '#ef4444',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    width: '32px',
+    height: '32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 };
 
 export default TodoItem;
