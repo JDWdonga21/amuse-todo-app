@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { todoListState, TodoItemType } from '../atoms/todoListAtom';
 
+import { motion } from 'framer-motion';
+
 const TodoItem = ({ item }: { item: TodoItemType }) => {
   const setTodoList = useSetRecoilState(todoListState);
   const [isEditing, setIsEditing] = useState(false);
@@ -130,7 +132,7 @@ const TodoItem = ({ item }: { item: TodoItemType }) => {
               textAlign: 'center',
               fontWeight: '600',
             }}>
-              {item.priority}
+              {(item.priority === 'high' ? "높음" : (item.priority === 'medium' ? "중간" : "낮음") )}
             </span>
           </td>
           
